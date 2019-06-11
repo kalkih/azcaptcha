@@ -1,0 +1,22 @@
+{
+  "name": "azcaptcha",
+  "version": "1.0.0",
+  "author": "Karl Kihlström <mrkihlstrom@gmail.com>",
+  "license": "MIT",
+  "description": "A modern js wrapper for the AZcaptcha API.",
+  "repository": "git@github.com:kalkih/azcaptcha.git",
+  "keywords": [
+    "azcaptcha",
+    "captcha",
+    "recaptcha",
+    "solver",
+    "captcha solver",
+    "anticaptcha",
+    "rucaptcha"
+  ],
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "apisauce": "^1.0.2"
+  }
+}
