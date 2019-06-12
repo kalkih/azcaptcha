@@ -36,7 +36,24 @@ module.exports = class AzCaptcha {
     if (res.ok && res.data.status === 1) {
       return res.data.request.split('\r\n')[0]
     }
+    if (res.data.request === 'CAPCHA_NOT_READY') {
+      return 0
+    }
     throw new Error(res.data.request || 'Unable to get task result')
+  }
+
+  async pollTaskResult (id, delay = 5000, attempts = 25) {
+    try {
+      await new Promise(r => setTimeout(r, delay))
+      for (let i = 0; i <= attempts; i++) {
+        const res = await this.getTaskResult(id)
+        if (res) return res
+        await new Promise(r => setTimeout(r, delay))
+      }
+    } catch (err) {
+      throw new Error(err.message)
+    }
+    throw new Error(`Timed out getting result after ${(delay * attempts) / 1000}s.`);
   }
   
   async getBalance () {
